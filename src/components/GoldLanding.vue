@@ -154,6 +154,9 @@ $spacing-xl: 24px;
   place-items: center;
   width: 100%;
   &__header {
+    @include tablet {
+      display: none;
+    }
     z-index: 3;
     height: 56px;
     padding: $spacing-m;
