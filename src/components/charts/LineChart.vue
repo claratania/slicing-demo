@@ -1,27 +1,48 @@
 <script>
-import { Line } from 'vue-chartjs'
+  import { Line } from 'vue-chartjs'
 
-// var ctx = document.getElementById('line-chart').getContext('2d');
-// var gradientFill = ctx.createLinearGradient(500, 0, 100, 0);
-// gradientFill.addColorStop(0, "rgba(65, 195, 255, 1)");
-// gradientFill.addColorStop(1, "rgba(65, 195, 255, 0.1)");
-
-export default {
-  extends: Line,
-  mounted () {
-    // Overwriting base render method with actual data.
-    this.renderChart({
-      labels: ['January', 'February', 'March', 'April'],
-      datasets: [
-        {
-          backgroundColor: 'rgba(65, 195, 255, 1)',
-          data: [750000, 800000, 880000, 900000]
+  export default {
+    extends: Line,
+    data () {
+      return {
+        chartData: {
+          labels: ["30 Jan", "31 Jan", "1 Feb", "2 Feb", "3 Feb", "4 Feb", "5 Feb"],
+          datasets: [
+            {
+              data: [800000, 830000, 845000, 850000, 870000, 860000, 855000],
+              // backgroundColor: linear-gradient(rgba(0,0,0, 0.05), transparent),
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+              },
+              gridLines: {
+                display: false,
+                drawOnChartArea: false
+              }
+            }],
+            xAxes: [ {
+              gridLines: {
+                display: false,
+                drawOnChartArea: false
+              }
+            }]
+          },
+          legend: {
+            display: false
+          },
+          responsive: true,
+          maintainAspectRatio: false
         }
-      ]
+      }
     },
-    {
-      legend: { display: false }
-    })
+    mounted () {
+      this.renderChart(this.chartData, this.options)
+    }
   }
-}
 </script>
